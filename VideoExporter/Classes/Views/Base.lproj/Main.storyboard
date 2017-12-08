@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="VideoExporter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RTF-3h-vT2" customClass="DefaultButtonView" customModule="VideoExporter" customModuleProvider="target">
+                                <rect key="frame" x="100" y="418" width="120" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gd-bC-7cf" customClass="DefaultButton" customModule="VideoExporter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="Select Video &gt;"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.87819940480000003" green="0.86666666670000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="4Gd-bC-7cf" firstAttribute="leading" secondItem="RTF-3h-vT2" secondAttribute="leading" id="4Vv-5G-GqP"/>
+                                    <constraint firstAttribute="width" constant="120" id="IVN-qI-2tZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="4Gd-bC-7cf" secondAttribute="trailing" id="IpR-R1-MK4"/>
+                                    <constraint firstAttribute="height" constant="50" id="YW3-Pn-S8F"/>
+                                    <constraint firstAttribute="bottom" secondItem="4Gd-bC-7cf" secondAttribute="bottom" id="YtP-1b-t6U"/>
+                                    <constraint firstItem="4Gd-bC-7cf" firstAttribute="top" secondItem="RTF-3h-vT2" secondAttribute="top" id="qY4-Ko-Om1"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RTF-3h-vT2" secondAttribute="bottom" constant="12" id="fsY-p0-JhZ"/>
+                            <constraint firstItem="RTF-3h-vT2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gnn-Mv-de1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="selectVideoButton" destination="4Gd-bC-7cf" id="p9f-iw-cWo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>

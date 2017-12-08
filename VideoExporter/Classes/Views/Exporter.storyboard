@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bmG-mu-tG6">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Exporter View Controller-->
+        <scene sceneID="jEV-db-nJM">
+            <objects>
+                <viewController storyboardIdentifier="Exporter" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bmG-mu-tG6" customClass="ExporterViewController" customModule="VideoExporter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EnF-if-eXr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="koZ-aJ-5am" customClass="PreviewView" customModule="VideoExporter" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <color key="backgroundColor" red="0.97092899659999998" green="1" blue="0.9452434099" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s6x-dK-aNA">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAMPLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDo-Zi-kJK">
+                                        <rect key="frame" x="100.5" y="222" width="119.5" height="36"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="0.8771524235" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="hDo-Zi-kJK" firstAttribute="centerX" secondItem="s6x-dK-aNA" secondAttribute="centerX" id="jGM-CW-6Vb"/>
+                                    <constraint firstItem="hDo-Zi-kJK" firstAttribute="centerY" secondItem="s6x-dK-aNA" secondAttribute="centerY" id="x6D-VQ-Iax"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Loz-lZ-F8L" customClass="DefaultButtonView" customModule="VideoExporter" customModuleProvider="target">
+                                <rect key="frame" x="30" y="418" width="120" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6k-2t-fPu" customClass="DefaultButton" customModule="VideoExporter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="&lt; Previous"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.87819940480000003" green="0.86666666670000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="w6k-2t-fPu" secondAttribute="bottom" id="0HE-uH-QK7"/>
+                                    <constraint firstItem="w6k-2t-fPu" firstAttribute="leading" secondItem="Loz-lZ-F8L" secondAttribute="leading" id="1Ji-sR-8YF"/>
+                                    <constraint firstAttribute="height" constant="50" id="H7Z-PB-2J9"/>
+                                    <constraint firstItem="w6k-2t-fPu" firstAttribute="top" secondItem="Loz-lZ-F8L" secondAttribute="top" id="PVT-sy-HzY"/>
+                                    <constraint firstAttribute="trailing" secondItem="w6k-2t-fPu" secondAttribute="trailing" id="jUS-O5-TSI"/>
+                                    <constraint firstAttribute="width" constant="120" id="m8T-Um-Grl"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="USC-32-hjF" customClass="DefaultButtonView" customModule="VideoExporter" customModuleProvider="target">
+                                <rect key="frame" x="170" y="418" width="120" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k6i-5F-D7c" customClass="DefaultButton" customModule="VideoExporter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="Export &gt;"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.87819940480000003" green="0.86666666670000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="k6i-5F-D7c" firstAttribute="top" secondItem="USC-32-hjF" secondAttribute="top" id="3J0-hN-03K"/>
+                                    <constraint firstAttribute="width" constant="120" id="6yK-zt-huP"/>
+                                    <constraint firstAttribute="bottom" secondItem="k6i-5F-D7c" secondAttribute="bottom" id="Dbn-MY-10b"/>
+                                    <constraint firstAttribute="trailing" secondItem="k6i-5F-D7c" secondAttribute="trailing" id="Gez-Kd-5K1"/>
+                                    <constraint firstAttribute="height" constant="50" id="Veq-lw-ECi"/>
+                                    <constraint firstItem="k6i-5F-D7c" firstAttribute="leading" secondItem="USC-32-hjF" secondAttribute="leading" id="ldP-0V-CAH"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="s6x-dK-aNA" secondAttribute="trailing" id="5so-V5-WxD"/>
+                            <constraint firstItem="koZ-aJ-5am" firstAttribute="leading" secondItem="EnF-if-eXr" secondAttribute="leading" id="AHA-5Q-Tef"/>
+                            <constraint firstItem="4cm-Zm-BSW" firstAttribute="bottom" secondItem="Loz-lZ-F8L" secondAttribute="bottom" constant="12" id="HKl-GA-bz1"/>
+                            <constraint firstItem="s6x-dK-aNA" firstAttribute="leading" secondItem="EnF-if-eXr" secondAttribute="leading" id="LBZ-nC-k4i"/>
+                            <constraint firstItem="USC-32-hjF" firstAttribute="centerX" secondItem="EnF-if-eXr" secondAttribute="centerX" constant="70" id="PbF-Vg-U9q"/>
+                            <constraint firstItem="koZ-aJ-5am" firstAttribute="trailing" secondItem="EnF-if-eXr" secondAttribute="trailing" id="SLk-AE-hyS"/>
+                            <constraint firstAttribute="bottom" secondItem="koZ-aJ-5am" secondAttribute="bottom" id="XYr-Yx-Ji8"/>
+                            <constraint firstItem="koZ-aJ-5am" firstAttribute="top" secondItem="EnF-if-eXr" secondAttribute="top" id="XtI-Vm-ErC"/>
+                            <constraint firstItem="s6x-dK-aNA" firstAttribute="top" secondItem="EnF-if-eXr" secondAttribute="top" id="e5J-00-xVK"/>
+                            <constraint firstAttribute="bottom" secondItem="s6x-dK-aNA" secondAttribute="bottom" id="rnh-WU-o7P"/>
+                            <constraint firstItem="4cm-Zm-BSW" firstAttribute="bottom" secondItem="USC-32-hjF" secondAttribute="bottom" constant="12" id="whR-b0-BdG"/>
+                            <constraint firstItem="Loz-lZ-F8L" firstAttribute="centerX" secondItem="EnF-if-eXr" secondAttribute="centerX" constant="-70" id="wl8-B7-kke"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4cm-Zm-BSW"/>
+                    </view>
+                    <connections>
+                        <outlet property="exportButton" destination="k6i-5F-D7c" id="ZT3-2Z-6JD"/>
+                        <outlet property="previewView" destination="koZ-aJ-5am" id="J1d-bR-d0u"/>
+                        <outlet property="previousButton" destination="w6k-2t-fPu" id="jif-hp-KTZ"/>
+                        <outlet property="sampleView" destination="s6x-dK-aNA" id="I9O-zw-Yx1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="76h-sf-ZeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="457.5" y="-162.5"/>
+        </scene>
+    </scenes>
+</document>
