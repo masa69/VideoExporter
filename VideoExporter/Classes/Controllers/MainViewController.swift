@@ -27,13 +27,13 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     private func initButton() {
         selectVideoButton.touchDown = {
-            Device.request(usage: .audio) { (isAuthorized: Bool) in
-                Device.request(usage: .camera) { (isAuthorized: Bool) in
+//            Device.request(usage: .audio) { (isAuthorized: Bool) in
+//                Device.request(usage: .camera) { (isAuthorized: Bool) in
                     if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
                         self.present(self.videoPicker, animated: true, completion: nil)
                     }
-                }
-            }
+//                }
+//            }
         }
     }
     
