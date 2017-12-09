@@ -148,8 +148,8 @@ class VideoExporter {
         FileManager.sharedInstance.remove(atPath: FileManager.videoExportPath)
         // 画質 (AVAssetExportPreset)
 //        let quality: String = AVAssetExportPresetHighestQuality
-        let quality: String = AVAssetExportPresetMediumQuality
-//        let quality: String = AVAssetExportPreset640x480
+//        let quality: String = AVAssetExportPresetMediumQuality
+        let quality: String = AVAssetExportPreset640x480
         guard let exportSession: AVAssetExportSession = AVAssetExportSession(asset: mutableComposition, presetName: quality) else {
             completion(true, "failed: AVAssetExportSession.init")
             return

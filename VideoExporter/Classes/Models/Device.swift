@@ -4,20 +4,23 @@ import AVFoundation
 
 class Device {
     
+    static var sharedInstance: Device = Device()
+    
+    
     enum PrivacyAccess {
         case camera
         case audio
     }
     
     
-    public static func request(usage: PrivacyAccess, callback: @escaping (_ isAuthorized: Bool) -> Void) {
+    func request(usage: PrivacyAccess, callback: @escaping (_ isAuthorized: Bool) -> Void) {
         switch usage {
         case .camera:// カメラのアクセス許可チェック
-            self.avCaptureDeviceRequestAccess(forMediaType: AVMediaType.video.rawValue) { (isAuthorized: Bool) in
+            self.requestAvCaptureDevice(forMediaType: AVMediaType.video.rawValue) { (isAuthorized: Bool) in
                 callback(isAuthorized)
             }
         case .audio:// マイクのアクセス許可チェック
-            self.avCaptureDeviceRequestAccess(forMediaType: AVMediaType.audio.rawValue) { (isAuthorized: Bool) in
+            self.requestAvCaptureDevice(forMediaType: AVMediaType.audio.rawValue) { (isAuthorized: Bool) in
                 callback(isAuthorized)
             }
         }
@@ -25,7 +28,7 @@ class Device {
     
     
     // private カメラ、音声のアクセス許可チェック
-    private static func avCaptureDeviceRequestAccess(forMediaType: String, callback: @escaping (_ isAuthorized: Bool) -> Void) {
+    private func requestAvCaptureDevice(forMediaType: String, callback: @escaping (_ isAuthorized: Bool) -> Void) {
         
         let videoStatus: AVAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType(rawValue: forMediaType))
         
