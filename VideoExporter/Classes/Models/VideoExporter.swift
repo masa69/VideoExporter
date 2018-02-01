@@ -31,11 +31,21 @@ class VideoExporter {
         
         // 1. 合成を実行するAVMutableCompositionオブジェクトを作る
         let mutableComposition: AVMutableComposition = AVMutableComposition()
-        
         // 2. AVAssetオブジェクトの生成と、オブジェクトから動画部分と音声部分のトラック情報をそれぞれ取得する
         let videoAsset: AVURLAsset = AVURLAsset(url: videoUrl, options: nil)
+        
+        if videoAsset.tracks(withMediaType: .video).count == 0 {
+            completion(true, "動画のエクスポートに失敗しました")
+            return
+        }
+        
         let videoTrack: AVAssetTrack = videoAsset.tracks(withMediaType: .video)[0]
-        let audioTrack: AVAssetTrack = videoAsset.tracks(withMediaType: .audio)[0]
+        var audioTrackTemp: AVAssetTrack?
+        
+        // 音声トラックがない動画の場合がある
+        if videoAsset.tracks(withMediaType: .audio).count > 0 {
+            audioTrackTemp = videoAsset.tracks(withMediaType: .audio)[0]
+        }
         
         // 3. トラック合成用のAVMutableCompositionTrackを、AVMutableCompositionから生成する
         guard let compositionVideoTrack: AVMutableCompositionTrack = mutableComposition.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid) else {
@@ -49,8 +59,10 @@ class VideoExporter {
         
         // 4. (3)で生成したトラックに動画・音声を登録する
         try? compositionVideoTrack.insertTimeRange(CMTimeRangeMake(kCMTimeZero, videoTrack.timeRange.duration), of: videoTrack, at: kCMTimeZero)
-        try? compositionAudioTrack.insertTimeRange(CMTimeRangeMake(kCMTimeZero, audioTrack.timeRange.duration), of: audioTrack, at: kCMTimeZero)
         
+        if let audioTrack: AVAssetTrack = audioTrackTemp {
+            try? compositionAudioTrack.insertTimeRange(CMTimeRangeMake(kCMTimeZero, audioTrack.timeRange.duration), of: audioTrack, at: kCMTimeZero)
+        }
         // 9. 動画情報（AVAssetTrack）から回転状態を判別する
         // 動画の回転情報を取得する
         let tf: CGAffineTransform = videoTrack.preferredTransform
@@ -115,8 +127,11 @@ class VideoExporter {
         
         // 8. 音声合成用オブジェクトを生成（AVMutableAudioMix）
         let audioMix: AVMutableAudioMix = AVMutableAudioMix()
-        audioMix.inputParameters = [audioMixInputParameters]
         
+        if let _: AVAssetTrack = audioTrackTemp {
+            audioMix.inputParameters = [audioMixInputParameters]
+        }
+ 
         // xx. 途中追加処理 (画像を合成するための準備)
         // 親レイヤーを作成
         let parentLayer: CALayer = CALayer()
@@ -150,14 +165,22 @@ class VideoExporter {
 //        let quality: String = AVAssetExportPresetHighestQuality
 //        let quality: String = AVAssetExportPresetMediumQuality
         let quality: String = AVAssetExportPreset640x480
-        guard let exportSession: AVAssetExportSession = AVAssetExportSession(asset: mutableComposition, presetName: quality) else {
-            completion(true, "failed: AVAssetExportSession.init")
-            return
+        let exportSession: AVAssetExportSession
+        
+        if let _: AVAssetTrack = audioTrackTemp {
+            guard let es: AVAssetExportSession = AVAssetExportSession(asset: mutableComposition, presetName: quality) else {
+                completion(true, "failed: AVAssetExportSession.init")
+                return
+            }
+            exportSession = es
+        } else {
+            guard let es: AVAssetExportSession = AVAssetExportSession(asset: videoAsset, presetName: quality) else {
+                completion(true, "failed: AVAssetExportSession.init")
+                return
+            }
+            exportSession = es
         }
-        /*guard let exportSession: AVAssetExportSession = AVAssetExportSession(asset: videoAsset, presetName: AVAssetExportPresetMediumQuality) else {
-            completion(true, "failed: AVAssetExportSession.init")
-            return
-        }*/
+        
         // 13. 保存設定を行い、Exportを実行
         exportSession.videoComposition = videoComposition
         exportSession.audioMix = audioMix
@@ -181,8 +204,16 @@ class VideoExporter {
                     }
                     completion(true, err.localizedDescription)
                 })
-            default:
+            case .cancelled:
+                completion(true, "cancelled: export")
+            case .exporting:
+                completion(true, "exporting: export")
+            case .failed:
                 completion(true, "failed: export")
+            case .unknown:
+                completion(true, "unknown: export")
+            case .waiting:
+                completion(true, "waiting: export")
             }
             
         })
