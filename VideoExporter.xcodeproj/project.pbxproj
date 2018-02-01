@@ -25,6 +25,7 @@
 		041199CA1FD63B2A00AD82AB /* DefaultButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041199C91FD63B2A00AD82AB /* DefaultButtonView.swift */; };
 		041199CC1FD9359000AD82AB /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041199CB1FD9359000AD82AB /* Device.swift */; };
 		041199CE1FD94A6700AD82AB /* VideoExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041199CD1FD94A6700AD82AB /* VideoExporter.swift */; };
+		04FAE5B8202317D0002057C6 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAE5B7202317D0002057C6 /* UIImageExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		041199C91FD63B2A00AD82AB /* DefaultButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButtonView.swift; sourceTree = "<group>"; };
 		041199CB1FD9359000AD82AB /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		041199CD1FD94A6700AD82AB /* VideoExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoExporter.swift; sourceTree = "<group>"; };
+		04FAE5B7202317D0002057C6 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,8 +172,8 @@
 		041199B31FD5655500AD82AB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				041199C31FD6300100AD82AB /* VideoConvertor.swift */,
 				041199CB1FD9359000AD82AB /* Device.swift */,
+				041199C31FD6300100AD82AB /* VideoConvertor.swift */,
 				041199CD1FD94A6700AD82AB /* VideoExporter.swift */,
 			);
 			path = Models;
@@ -190,8 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				041199BF1FD6266300AD82AB /* DefaultButton.swift */,
-				041199C11FD629D700AD82AB /* PreviewView.swift */,
 				041199C91FD63B2A00AD82AB /* DefaultButtonView.swift */,
+				041199C11FD629D700AD82AB /* PreviewView.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -201,6 +203,7 @@
 			children = (
 				041199C51FD630C600AD82AB /* FileManagerExtension.swift */,
 				041199C71FD6314F00AD82AB /* UIAlertControllerExtension.swift */,
+				04FAE5B7202317D0002057C6 /* UIImageExtension.swift */,
 				041199B91FD5673800AD82AB /* UIViewExtension.swift */,
 			);
 			path = Extensions;
@@ -350,6 +353,7 @@
 				041199C81FD6314F00AD82AB /* UIAlertControllerExtension.swift in Sources */,
 				041199C21FD629D700AD82AB /* PreviewView.swift in Sources */,
 				041199CA1FD63B2A00AD82AB /* DefaultButtonView.swift in Sources */,
+				04FAE5B8202317D0002057C6 /* UIImageExtension.swift in Sources */,
 				041199BA1FD5673800AD82AB /* UIViewExtension.swift in Sources */,
 				041199841FD564B200AD82AB /* AppDelegate.swift in Sources */,
 				041199BC1FD621AF00AD82AB /* ExporterViewController.swift in Sources */,

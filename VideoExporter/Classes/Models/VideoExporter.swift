@@ -63,6 +63,7 @@ class VideoExporter {
         if let audioTrack: AVAssetTrack = audioTrackTemp {
             try? compositionAudioTrack.insertTimeRange(CMTimeRangeMake(kCMTimeZero, audioTrack.timeRange.duration), of: audioTrack, at: kCMTimeZero)
         }
+        
         // 9. 動画情報（AVAssetTrack）から回転状態を判別する
         // 動画の回転情報を取得する
         let tf: CGAffineTransform = videoTrack.preferredTransform
@@ -143,10 +144,17 @@ class VideoExporter {
         // 動画に重ねる画像を追加
         for view in views {
             if let image: UIImage = view.toImage() {
+//                print(image.size)
+//                print(videoSize)
+                let minScale: CGFloat = CGFloat(min(Double(image.size.width / videoSize.width), Double(image.size.height / videoSize.height)))
+                let width: CGFloat = videoSize.width * minScale
+                let height: CGFloat = videoSize.height * minScale
+                let x: CGFloat = (image.size.width - width) / 2
+                let y: CGFloat = (image.size.height - height) / 2
+                let frame: CGRect = CGRect(x: x, y: y, width: width, height: height)
                 let imageLayer: CALayer = CALayer()
-                imageLayer.contents = image.cgImage
+                imageLayer.contents = image.cropping(to: frame)?.cgImage
                 imageLayer.frame = CGRect(x: 0, y: 0, width: videoSize.width, height: videoSize.height)
-//                imageLayer.frame = view.frame
                 // Ratina対応
                 imageLayer.contentsScale = UIScreen.main.scale
                 parentLayer.addSublayer(imageLayer)
@@ -180,7 +188,7 @@ class VideoExporter {
             }
             exportSession = es
         }
-        
+//        completion(false, "success")
         // 13. 保存設定を行い、Exportを実行
         exportSession.videoComposition = videoComposition
         exportSession.audioMix = audioMix

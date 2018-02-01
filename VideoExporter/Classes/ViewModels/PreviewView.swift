@@ -52,7 +52,8 @@ class PreviewView: UIView {
         let queue: AVQueuePlayer = AVQueuePlayer(items: items)
         self.player = queue
         self.player?.actionAtItemEnd = .none
-        self.playerLayer.videoGravity = .resizeAspectFill
+//        self.playerLayer.videoGravity = .resizeAspectFill
+        self.playerLayer.videoGravity = .resizeAspect
     }
     
     
