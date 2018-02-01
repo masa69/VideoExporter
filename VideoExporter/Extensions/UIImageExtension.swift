@@ -12,7 +12,6 @@ extension UIImage {
                 break
             }
         }
-        
         UIGraphicsBeginImageContextWithOptions(to.size, opaque, scale)
         draw(at: CGPoint(x: -to.origin.x, y: -to.origin.y))
         let result = UIGraphicsGetImageFromCurrentImageContext()
