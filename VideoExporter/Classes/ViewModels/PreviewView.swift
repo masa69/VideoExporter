@@ -46,7 +46,7 @@ class PreviewView: UIView {
     
     func setPlayer(url: URL) {
         var items: [AVPlayerItem] = [AVPlayerItem]()
-        let item: AVPlayerItem = AVPlayerItem.init(url: url)
+        let item: AVPlayerItem = AVPlayerItem(url: url)
         NotificationCenter.default.addObserver(self, selector: #selector(self.didPlay(_:)), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: item)
         items.append(item)
         let queue: AVQueuePlayer = AVQueuePlayer(items: items)
@@ -54,6 +54,11 @@ class PreviewView: UIView {
         self.player?.actionAtItemEnd = .none
 //        self.playerLayer.videoGravity = .resizeAspectFill
         self.playerLayer.videoGravity = .resizeAspect
+        
+        let videoAsset: AVURLAsset = AVURLAsset(url: url, options: nil)
+        if videoAsset.tracks(withMediaType: .audio).count == 0 {
+            print("this video don't have audio track.")
+        }
     }
     
     
