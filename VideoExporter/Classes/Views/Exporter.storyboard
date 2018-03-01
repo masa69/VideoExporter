@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bmG-mu-tG6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bmG-mu-tG6">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,6 +36,29 @@
                                 <constraints>
                                     <constraint firstItem="hDo-Zi-kJK" firstAttribute="centerX" secondItem="s6x-dK-aNA" secondAttribute="centerX" id="jGM-CW-6Vb"/>
                                     <constraint firstItem="hDo-Zi-kJK" firstAttribute="centerY" secondItem="s6x-dK-aNA" secondAttribute="centerY" id="x6D-VQ-Iax"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ne-PG-XjC">
+                                <rect key="frame" x="60" y="355" width="200" height="50"/>
+                                <subviews>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mHp-ZI-Nbj">
+                                        <rect key="frame" x="127" y="9.5" width="51" height="31"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volume" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhs-uS-ksB">
+                                        <rect key="frame" x="24" y="16.5" width="48.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Hhs-uS-ksB" firstAttribute="centerY" secondItem="4Ne-PG-XjC" secondAttribute="centerY" id="JU3-9d-BLw"/>
+                                    <constraint firstAttribute="width" constant="200" id="eNt-7K-1bE"/>
+                                    <constraint firstItem="mHp-ZI-Nbj" firstAttribute="centerY" secondItem="4Ne-PG-XjC" secondAttribute="centerY" id="i0W-uQ-RFG"/>
+                                    <constraint firstItem="Hhs-uS-ksB" firstAttribute="leading" secondItem="4Ne-PG-XjC" secondAttribute="leading" constant="24" id="jCr-ur-6cO"/>
+                                    <constraint firstAttribute="trailing" secondItem="mHp-ZI-Nbj" secondAttribute="trailing" constant="24" id="lv7-25-3oc"/>
+                                    <constraint firstAttribute="height" constant="50" id="w3L-gM-pki"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Loz-lZ-F8L" customClass="DefaultButtonView" customModule="VideoExporter" customModuleProvider="target">
@@ -83,12 +106,14 @@
                             <constraint firstItem="koZ-aJ-5am" firstAttribute="leading" secondItem="EnF-if-eXr" secondAttribute="leading" id="AHA-5Q-Tef"/>
                             <constraint firstItem="4cm-Zm-BSW" firstAttribute="bottom" secondItem="Loz-lZ-F8L" secondAttribute="bottom" constant="12" id="HKl-GA-bz1"/>
                             <constraint firstItem="s6x-dK-aNA" firstAttribute="leading" secondItem="EnF-if-eXr" secondAttribute="leading" id="LBZ-nC-k4i"/>
+                            <constraint firstItem="4Ne-PG-XjC" firstAttribute="centerX" secondItem="EnF-if-eXr" secondAttribute="centerX" id="NBd-fh-pex"/>
                             <constraint firstItem="USC-32-hjF" firstAttribute="centerX" secondItem="EnF-if-eXr" secondAttribute="centerX" constant="70" id="PbF-Vg-U9q"/>
                             <constraint firstItem="koZ-aJ-5am" firstAttribute="trailing" secondItem="EnF-if-eXr" secondAttribute="trailing" id="SLk-AE-hyS"/>
                             <constraint firstAttribute="bottom" secondItem="koZ-aJ-5am" secondAttribute="bottom" id="XYr-Yx-Ji8"/>
                             <constraint firstItem="koZ-aJ-5am" firstAttribute="top" secondItem="EnF-if-eXr" secondAttribute="top" id="XtI-Vm-ErC"/>
                             <constraint firstItem="s6x-dK-aNA" firstAttribute="top" secondItem="EnF-if-eXr" secondAttribute="top" id="e5J-00-xVK"/>
                             <constraint firstAttribute="bottom" secondItem="s6x-dK-aNA" secondAttribute="bottom" id="rnh-WU-o7P"/>
+                            <constraint firstItem="4cm-Zm-BSW" firstAttribute="bottom" secondItem="4Ne-PG-XjC" secondAttribute="bottom" constant="75" id="vVm-St-eNs"/>
                             <constraint firstItem="4cm-Zm-BSW" firstAttribute="bottom" secondItem="USC-32-hjF" secondAttribute="bottom" constant="12" id="whR-b0-BdG"/>
                             <constraint firstItem="Loz-lZ-F8L" firstAttribute="centerX" secondItem="EnF-if-eXr" secondAttribute="centerX" constant="-70" id="wl8-B7-kke"/>
                         </constraints>
@@ -99,6 +124,7 @@
                         <outlet property="previewView" destination="koZ-aJ-5am" id="J1d-bR-d0u"/>
                         <outlet property="previousButton" destination="w6k-2t-fPu" id="jif-hp-KTZ"/>
                         <outlet property="sampleView" destination="s6x-dK-aNA" id="I9O-zw-Yx1"/>
+                        <outlet property="volumeSwitch" destination="mHp-ZI-Nbj" id="LQL-Rz-zIy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="76h-sf-ZeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

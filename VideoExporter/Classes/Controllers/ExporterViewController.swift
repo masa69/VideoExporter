@@ -10,6 +10,8 @@ class ExporterViewController: UIViewController {
     
     @IBOutlet weak var sampleView: UIView!
     
+    @IBOutlet weak var volumeSwitch: UISwitch!
+    
     
     var videoUrl: URL?
     
@@ -72,7 +74,10 @@ class ExporterViewController: UIViewController {
             self.close()
             return
         }
-        VideoExporter.sharedInstance.export(videoUrl: url, views: [sampleView], volume: 1.0) { (error: Bool, message: String) in
+        
+        let volume: Float = (volumeSwitch.isOn) ? 1.0 : 0.0
+        
+        VideoExporter.sharedInstance.export(videoUrl: url, views: [sampleView], volume: volume) { (error: Bool, message: String) in
 //            previewView.stop()
             print(message)
             self.close()
