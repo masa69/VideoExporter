@@ -52,16 +52,20 @@ class VideoExporter {
             completion(true, "failed: addMutableTrack(.video)")
             return
         }
-        guard let compositionAudioTrack: AVMutableCompositionTrack = mutableComposition.addMutableTrack(withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid) else {
-            completion(true, "failed: addMutableTrack(.audio)")
-            return
+        
+        var compositionAudioTrack: AVMutableCompositionTrack?
+        
+        if volume > 0 {
+            compositionAudioTrack = mutableComposition.addMutableTrack(withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid)
         }
         
         // 4. (3)で生成したトラックに動画・音声を登録する
         try? compositionVideoTrack.insertTimeRange(CMTimeRangeMake(kCMTimeZero, videoTrack.timeRange.duration), of: videoTrack, at: kCMTimeZero)
         
-        if let audioTrack: AVAssetTrack = audioTrackTemp {
-            try? compositionAudioTrack.insertTimeRange(CMTimeRangeMake(kCMTimeZero, audioTrack.timeRange.duration), of: audioTrack, at: kCMTimeZero)
+        if volume > 0 {
+            if let audioTrack: AVAssetTrack = audioTrackTemp {
+                try? compositionAudioTrack?.insertTimeRange(CMTimeRangeMake(kCMTimeZero, audioTrack.timeRange.duration), of: audioTrack, at: kCMTimeZero)
+            }
         }
         
         // 9. 動画情報（AVAssetTrack）から回転状態を判別する
@@ -123,14 +127,19 @@ class VideoExporter {
         videoComposition.instructions = [instruction]
         
         // 7. 音声合成用パラメータオブジェクトの生成（AVMutableAudioMixInputParameters）
-        let audioMixInputParameters: AVMutableAudioMixInputParameters = AVMutableAudioMixInputParameters(track: compositionAudioTrack)
-        audioMixInputParameters.setVolumeRamp(fromStartVolume: volume, toEndVolume: volume, timeRange: CMTimeRangeMake(kCMTimeZero, mutableComposition.duration))
+        var audioMixInputParameters: AVMutableAudioMixInputParameters?
+        if volume > 0 {
+            audioMixInputParameters = AVMutableAudioMixInputParameters(track: compositionAudioTrack)
+            audioMixInputParameters?.setVolumeRamp(fromStartVolume: volume, toEndVolume: volume, timeRange: CMTimeRangeMake(kCMTimeZero, mutableComposition.duration))
+        }
         
         // 8. 音声合成用オブジェクトを生成（AVMutableAudioMix）
         let audioMix: AVMutableAudioMix = AVMutableAudioMix()
         
-        if let _: AVAssetTrack = audioTrackTemp {
-            audioMix.inputParameters = [audioMixInputParameters]
+        if let mix: AVMutableAudioMixInputParameters = audioMixInputParameters {
+            if let _: AVAssetTrack = audioTrackTemp {
+                audioMix.inputParameters = [mix]
+            }
         }
  
         // xx. 途中追加処理 (画像を合成するための準備)
