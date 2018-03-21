@@ -181,7 +181,8 @@ class VideoExporter {
         // 画質 (AVAssetExportPreset)
 //        let quality: String = AVAssetExportPresetHighestQuality
 //        let quality: String = AVAssetExportPresetMediumQuality
-        let quality: String = AVAssetExportPreset640x480
+//        let quality: String = AVAssetExportPreset640x480
+        let quality: String = AVAssetExportPreset1280x720
         let exportSession: AVAssetExportSession
         
         if let _: AVAssetTrack = audioTrackTemp {
@@ -207,6 +208,7 @@ class VideoExporter {
         exportSession.exportAsynchronously(completionHandler: {
             switch exportSession.status {
             case .completed:
+//                completion(false, "success")
                 // 端末に保存
                 PHPhotoLibrary.shared().performChanges({
                     PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: FileManager.videoExportURL)

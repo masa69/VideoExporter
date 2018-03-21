@@ -531,7 +531,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.psychedelicnekopunch.VideoExporter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d3a72970-4721-4fe3-b678-04ed5349f253";
+				PROVISIONING_PROFILE = "74ae1253-f950-41bd-bed8-eae09a9e6d09";
 				PROVISIONING_PROFILE_SPECIFIER = VideoExporter;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -80,6 +80,14 @@ class ExporterViewController: UIViewController {
         VideoExporter.sharedInstance.export(videoUrl: url, views: [sampleView], volume: volume) { (error: Bool, message: String) in
 //            previewView.stop()
             print(message)
+            if error {
+                let alert: UIAlertController = UIAlertController(title: "error", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) in
+                    self.close()
+                }))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
             self.close()
         }
     }
