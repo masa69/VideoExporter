@@ -27,13 +27,39 @@ class VideoExporter {
     static var sharedInstance: VideoExporter = VideoExporter()
     
     
+    private var startTime: CMTime?
+    
+    private var endTime: CMTime?
+    
+    
+    public func export(asset: AVAsset, start: CMTime, end: CMTime, volume: Float, completion: @escaping (_ error: Bool, _ message: String) -> Void) {
+        self.startTime = start
+        self.endTime = end
+        self.export(asset: asset as! AVURLAsset, views: [], volume: volume) { (error: Bool, message: String) in
+            completion(error, message)
+        }
+    }
+    
+    
     public func export(videoUrl: URL, views: [UIView], volume: Float, completion: @escaping (_ error: Bool, _ message: String) -> Void) {
+        let asset: AVURLAsset = AVURLAsset(url: videoUrl, options: nil)
+        self.export(asset: asset, views: views, volume: volume) { (error: Bool, message: String) in
+            completion(error, message)
+        }
+    }
+    
+    
+    public func export(asset videoAsset: AVURLAsset, views: [UIView], volume: Float, completion: @escaping (_ error: Bool, _ message: String) -> Void) {
+        
+        let startTime: CMTime = (self.startTime == nil) ? kCMTimeZero : self.startTime!
+        let endTime: CMTime = (self.endTime == nil) ? videoAsset.duration : self.endTime!
+        let timeRange: CMTimeRange = CMTimeRange(start: startTime, end: endTime)
+        
+        print(startTime.seconds, endTime.seconds)
         
         // 1. 合成を実行するAVMutableCompositionオブジェクトを作る
         let mutableComposition: AVMutableComposition = AVMutableComposition()
         // 2. AVAssetオブジェクトの生成と、オブジェクトから動画部分と音声部分のトラック情報をそれぞれ取得する
-        let videoAsset: AVURLAsset = AVURLAsset(url: videoUrl, options: nil)
-        
         if videoAsset.tracks(withMediaType: .video).count == 0 {
             completion(true, "動画のエクスポートに失敗しました")
             return
@@ -56,15 +82,17 @@ class VideoExporter {
         var compositionAudioTrack: AVMutableCompositionTrack?
         
         if volume > 0 {
-            compositionAudioTrack = mutableComposition.addMutableTrack(withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid)
+            if let _: AVAssetTrack = audioTrackTemp {
+                compositionAudioTrack = mutableComposition.addMutableTrack(withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid)
+            }
         }
         
         // 4. (3)で生成したトラックに動画・音声を登録する
-        try? compositionVideoTrack.insertTimeRange(CMTimeRangeMake(kCMTimeZero, videoTrack.timeRange.duration), of: videoTrack, at: kCMTimeZero)
+        try? compositionVideoTrack.insertTimeRange(timeRange, of: videoTrack, at: kCMTimeZero)
         
         if volume > 0 {
             if let audioTrack: AVAssetTrack = audioTrackTemp {
-                try? compositionAudioTrack?.insertTimeRange(CMTimeRangeMake(kCMTimeZero, audioTrack.timeRange.duration), of: audioTrack, at: kCMTimeZero)
+                try? compositionAudioTrack?.insertTimeRange(timeRange, of: audioTrack, at: kCMTimeZero)
             }
         }
         
@@ -82,34 +110,9 @@ class VideoExporter {
             ? CGSize(width: originVideoSize.height, height: originVideoSize.width)
             : originVideoSize
         
-        /*let originVideoSize: CGSize = videoTrack.naturalSize
-        
-        let size: CGSize = videoTrack.naturalSize
-        let tf: CGAffineTransform = videoTrack.preferredTransform
-        
-        var width: CGFloat = 0
-        var height: CGFloat = 0
-        
-        let maxSize: CGFloat = (size.width > size.height) ? size.width : size.height
-        let minSize: CGFloat = (size.width > size.height) ? size.height : size.width
-        
-        if tf.tx == size.width && tf.ty == size.height {
-            width = maxSize
-            height = minSize
-        } else if tf.tx == 0 && tf.ty == 0  {
-            width = maxSize
-            height = minSize
-        } else {
-            width = minSize
-            height = maxSize
-        }
-        
-        let videoSize: CGSize = CGSize(width: width, height: height)*/
-//        let videoSize: CGSize = videoTrack.naturalSize
-        
         // 5. 動画の合成命令用オブジェクトを生成（AVMutableVideoCompositionInstructionとAVMutableVideoCompositionLayerInstruction）
         let instruction: AVMutableVideoCompositionInstruction = AVMutableVideoCompositionInstruction()
-        instruction.timeRange = CMTimeRangeMake(kCMTimeZero, videoTrack.timeRange.duration)
+        instruction.timeRange = CMTimeRangeMake(kCMTimeZero, endTime - startTime)
         let layerInstruction: AVMutableVideoCompositionLayerInstruction = AVMutableVideoCompositionLayerInstruction(assetTrack: compositionVideoTrack)
         
         // 動画が縦向きだったら90度回転させる
@@ -129,8 +132,10 @@ class VideoExporter {
         // 7. 音声合成用パラメータオブジェクトの生成（AVMutableAudioMixInputParameters）
         var audioMixInputParameters: AVMutableAudioMixInputParameters?
         if volume > 0 {
-            audioMixInputParameters = AVMutableAudioMixInputParameters(track: compositionAudioTrack)
-            audioMixInputParameters?.setVolumeRamp(fromStartVolume: volume, toEndVolume: volume, timeRange: CMTimeRangeMake(kCMTimeZero, mutableComposition.duration))
+            if let _: AVAssetTrack = audioTrackTemp {
+                audioMixInputParameters = AVMutableAudioMixInputParameters(track: compositionAudioTrack)
+                audioMixInputParameters?.setVolumeRamp(fromStartVolume: volume, toEndVolume: volume, timeRange: CMTimeRangeMake(kCMTimeZero, mutableComposition.duration))
+            }
         }
         
         // 8. 音声合成用オブジェクトを生成（AVMutableAudioMix）
@@ -141,7 +146,7 @@ class VideoExporter {
                 audioMix.inputParameters = [mix]
             }
         }
- 
+        
         // xx. 途中追加処理 (画像を合成するための準備)
         // 親レイヤーを作成
         let parentLayer: CALayer = CALayer()
@@ -153,8 +158,6 @@ class VideoExporter {
         // 動画に重ねる画像を追加
         for view in views {
             if let image: UIImage = view.toImage() {
-//                print(image.size)
-//                print(videoSize)
                 let minScale: CGFloat = CGFloat(min(Double(image.size.width / videoSize.width), Double(image.size.height / videoSize.height)))
                 let width: CGFloat = videoSize.width * minScale
                 let height: CGFloat = videoSize.height * minScale
@@ -185,19 +188,12 @@ class VideoExporter {
         let quality: String = AVAssetExportPreset1280x720
         let exportSession: AVAssetExportSession
         
-        if let _: AVAssetTrack = audioTrackTemp {
-            guard let es: AVAssetExportSession = AVAssetExportSession(asset: mutableComposition, presetName: quality) else {
-                completion(true, "failed: AVAssetExportSession.init")
-                return
-            }
-            exportSession = es
-        } else {
-            guard let es: AVAssetExportSession = AVAssetExportSession(asset: videoAsset, presetName: quality) else {
-                completion(true, "failed: AVAssetExportSession.init")
-                return
-            }
-            exportSession = es
+        guard let es: AVAssetExportSession = AVAssetExportSession(asset: mutableComposition, presetName: quality) else {
+            completion(true, "failed: AVAssetExportSession.init")
+            return
         }
+        exportSession = es
+        
 //        completion(false, "success")
         // 13. 保存設定を行い、Exportを実行
         exportSession.videoComposition = videoComposition
@@ -237,4 +233,5 @@ class VideoExporter {
             
         })
     }
+    
 }
