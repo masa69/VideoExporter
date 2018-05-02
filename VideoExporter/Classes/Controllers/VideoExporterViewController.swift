@@ -83,7 +83,7 @@ class VideoExporterViewController: UIViewController {
             }
             // 端末に保存
             PHPhotoLibrary.shared().performChanges({
-                PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: FileManager.videoExportURL)
+                PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: exporter.outputUrl)
             }, completionHandler: { (success: Bool, error: Error?) in
                 if success {
                     self.close()
