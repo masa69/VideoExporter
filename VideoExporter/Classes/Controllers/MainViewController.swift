@@ -56,8 +56,8 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     
     private func gotoPreview(videoUrl: URL) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Exporter", bundle: nil)
-        let vc: ExporterViewController = storyboard.instantiateViewController(withIdentifier: "Exporter") as! ExporterViewController
+        let storyboard: UIStoryboard = UIStoryboard(name: "VideoExporter", bundle: nil)
+        let vc: VideoExporterViewController = storyboard.instantiateViewController(withIdentifier: "VideoExporter") as! VideoExporterViewController
         vc.videoUrl = videoUrl
         self.present(vc, animated: true, completion: nil)
     }

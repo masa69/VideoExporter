@@ -14,9 +14,9 @@
 		0411998E1FD564B200AD82AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0411998C1FD564B200AD82AB /* LaunchScreen.storyboard */; };
 		041199991FD564B200AD82AB /* VideoExporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041199981FD564B200AD82AB /* VideoExporterTests.swift */; };
 		041199A41FD564B200AD82AB /* VideoExporterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041199A31FD564B200AD82AB /* VideoExporterUITests.swift */; };
-		041199B71FD565F900AD82AB /* Exporter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041199B61FD565F900AD82AB /* Exporter.storyboard */; };
+		041199B71FD565F900AD82AB /* VideoExporter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041199B61FD565F900AD82AB /* VideoExporter.storyboard */; };
 		041199BA1FD5673800AD82AB /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041199B91FD5673800AD82AB /* UIViewExtension.swift */; };
-		041199BC1FD621AF00AD82AB /* ExporterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041199BB1FD621AF00AD82AB /* ExporterViewController.swift */; };
+		041199BC1FD621AF00AD82AB /* VideoExporterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041199BB1FD621AF00AD82AB /* VideoExporterViewController.swift */; };
 		041199C01FD6266300AD82AB /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041199BF1FD6266300AD82AB /* DefaultButton.swift */; };
 		041199C21FD629D700AD82AB /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041199C11FD629D700AD82AB /* PreviewView.swift */; };
 		041199C41FD6300100AD82AB /* VideoConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041199C31FD6300100AD82AB /* VideoConvertor.swift */; };
@@ -59,9 +59,9 @@
 		0411999F1FD564B200AD82AB /* VideoExporterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideoExporterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		041199A31FD564B200AD82AB /* VideoExporterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoExporterUITests.swift; sourceTree = "<group>"; };
 		041199A51FD564B200AD82AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		041199B61FD565F900AD82AB /* Exporter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Exporter.storyboard; sourceTree = "<group>"; };
+		041199B61FD565F900AD82AB /* VideoExporter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoExporter.storyboard; sourceTree = "<group>"; };
 		041199B91FD5673800AD82AB /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		041199BB1FD621AF00AD82AB /* ExporterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExporterViewController.swift; sourceTree = "<group>"; };
+		041199BB1FD621AF00AD82AB /* VideoExporterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoExporterViewController.swift; sourceTree = "<group>"; };
 		041199BF1FD6266300AD82AB /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
 		041199C11FD629D700AD82AB /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		041199C31FD6300100AD82AB /* VideoConvertor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoConvertor.swift; sourceTree = "<group>"; };
@@ -123,6 +123,7 @@
 			children = (
 				041199B11FD5655200AD82AB /* Classes */,
 				041199B81FD5671A00AD82AB /* Extensions */,
+				041ECA3520997E0100431FB3 /* Libraries */,
 				041199831FD564B200AD82AB /* AppDelegate.swift */,
 				0411998A1FD564B200AD82AB /* Assets.xcassets */,
 				0411998F1FD564B200AD82AB /* Info.plist */,
@@ -163,8 +164,8 @@
 		041199B21FD5655300AD82AB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				041199BB1FD621AF00AD82AB /* ExporterViewController.swift */,
 				041199851FD564B200AD82AB /* MainViewController.swift */,
+				041199BB1FD621AF00AD82AB /* VideoExporterViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -174,7 +175,6 @@
 			children = (
 				041199CB1FD9359000AD82AB /* Device.swift */,
 				041199C31FD6300100AD82AB /* VideoConvertor.swift */,
-				041199CD1FD94A6700AD82AB /* VideoExporter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -182,8 +182,8 @@
 		041199B41FD5655500AD82AB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				041199B61FD565F900AD82AB /* Exporter.storyboard */,
 				041199871FD564B200AD82AB /* Main.storyboard */,
+				041199B61FD565F900AD82AB /* VideoExporter.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -207,6 +207,22 @@
 				041199B91FD5673800AD82AB /* UIViewExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		041ECA3520997E0100431FB3 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				041ECA3620997E0D00431FB3 /* VideoExporter */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		041ECA3620997E0D00431FB3 /* VideoExporter */ = {
+			isa = PBXGroup;
+			children = (
+				041199CD1FD94A6700AD82AB /* VideoExporter.swift */,
+			);
+			path = VideoExporter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,7 +335,7 @@
 				0411998E1FD564B200AD82AB /* LaunchScreen.storyboard in Resources */,
 				0411998B1FD564B200AD82AB /* Assets.xcassets in Resources */,
 				041199891FD564B200AD82AB /* Main.storyboard in Resources */,
-				041199B71FD565F900AD82AB /* Exporter.storyboard in Resources */,
+				041199B71FD565F900AD82AB /* VideoExporter.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,7 +372,7 @@
 				04FAE5B8202317D0002057C6 /* UIImageExtension.swift in Sources */,
 				041199BA1FD5673800AD82AB /* UIViewExtension.swift in Sources */,
 				041199841FD564B200AD82AB /* AppDelegate.swift in Sources */,
-				041199BC1FD621AF00AD82AB /* ExporterViewController.swift in Sources */,
+				041199BC1FD621AF00AD82AB /* VideoExporterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,7 +1,8 @@
 
 import UIKit
+import Photos
 
-class ExporterViewController: UIViewController {
+class VideoExporterViewController: UIViewController {
     
     @IBOutlet weak var previousButton: DefaultButton!
     @IBOutlet weak var exportButton: DefaultButton!
@@ -62,24 +63,16 @@ class ExporterViewController: UIViewController {
     }
     
     
-    private func close() {
-        self.dismiss(animated: true, completion: { () -> Void in
-            self.previewView.removeLayer()
-        })
-    }
-    
-    
     private func export() {
         guard let url: URL = self.videoUrl else {
             self.close()
             return
         }
         
-        let volume: Float = (volumeSwitch.isOn) ? 1.0 : 0.0
-        
-        VideoExporter.sharedInstance.export(videoUrl: url, views: [sampleView], volume: volume) { (error: Bool, message: String) in
-//            previewView.stop()
-            print(message)
+        let exporter: VideoExporter = VideoExporter(to: FileManager.videoExportURL)
+        exporter.volume = (volumeSwitch.isOn) ? 1.0 : 0.0
+        exporter.views = [sampleView]
+        exporter.export(url: url) { (error: Bool, message: String) in
             if error {
                 let alert: UIAlertController = UIAlertController(title: "error", message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) in
@@ -88,8 +81,33 @@ class ExporterViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
                 return
             }
-            self.close()
+            // 端末に保存
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: FileManager.videoExportURL)
+            }, completionHandler: { (success: Bool, error: Error?) in
+                if success {
+                    self.close()
+                    return
+                }
+                var message: String = "failed: save to Library"
+                if let err: Error = error {
+                    message = err.localizedDescription
+                }
+                let alert: UIAlertController = UIAlertController(title: "error", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) in
+                    self.close()
+                }))
+                self.present(alert, animated: true, completion: nil)
+            })
+            
         }
+    }
+    
+    
+    private func close() {
+        self.dismiss(animated: true, completion: { () -> Void in
+            self.previewView.removeLayer()
+        })
     }
     
 }
