@@ -70,6 +70,10 @@ class VideoExporterViewController: UIViewController {
         }
         
         let exporter: VideoExporter = VideoExporter(to: FileManager.videoExportURL)
+//        exporter.quality = AVAssetExportPresetHighestQuality
+//        exporter.quality = AVAssetExportPresetMediumQuality
+//        exporter.quality = AVAssetExportPreset640x480
+//        exporter.quality = AVAssetExportPreset1280x720
         exporter.volume = (volumeSwitch.isOn) ? 1.0 : 0.0
         exporter.views = [sampleView]
         exporter.export(url: url) { (error: Bool, message: String) in
