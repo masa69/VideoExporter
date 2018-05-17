@@ -20,9 +20,10 @@ class VideoConvertor {
             return
         }
 //        let quality: String = AVAssetExportPresetHighestQuality
-//        let quality: String = AVAssetExportPresetMediumQuality
+        let quality: String = AVAssetExportPresetMediumQuality
 //        let quality: String = AVAssetExportPreset640x480
-        let quality: String = AVAssetExportPreset1280x720
+//        let quality: String = AVAssetExportPreset1280x720
+//        let quality: String = AVAssetExportPresetPassthrough
         if let exportSession: AVAssetExportSession = AVAssetExportSession(asset: asset, presetName: quality) {
             exportSession.outputFileType = AVFileType.mp4
             exportSession.outputURL = to

@@ -60,8 +60,8 @@ extension FileManager {
         get {
             let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
             let documentsDirectory = paths[0] as String
-//            let path : String = "\(documentsDirectory)/uploadTempVideo.mp4"
-            let path : String = "\(documentsDirectory)/uploadTempVideo.MOV"
+            let path : String = "\(documentsDirectory)/uploadTempVideo.mp4"
+//            let path : String = "\(documentsDirectory)/uploadTempVideo.MOV"
             return path
         }
     }
@@ -71,8 +71,8 @@ extension FileManager {
         get {
             let paths = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask)
             var path = paths[0]
-//            path.appendPathComponent("uploadTempVideo.mp4")
-            path.appendPathComponent("uploadTempVideo.MOV")
+            path.appendPathComponent("uploadTempVideo.mp4")
+//            path.appendPathComponent("uploadTempVideo.MOV")
             return path
         }
     }

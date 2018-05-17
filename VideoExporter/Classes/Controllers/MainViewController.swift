@@ -69,6 +69,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         if let videoURL: URL = info[UIImagePickerControllerMediaURL] as? URL {
             
             FileManager().remove(atPath: FileManager.videoUploadPath)
+            FileManager().remove(atPath: FileManager.tempVideoUploadPath)
             
             VideoConvertor.mp4(url: videoURL, to: FileManager.videoUploadURL, callback: { (error: Bool, message: String) in
                 var err: Bool = error
@@ -95,6 +96,43 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                     self.gotoPreview(videoUrl: FileManager.videoUploadURL)
                 })
             })
+            
+            /*VideoConvertor.mp4(url: videoURL, to: FileManager.tempVideoUploadURL, callback: { (error: Bool, message: String) in
+                var err: Bool = error
+                var mes: String = message
+                if !err {
+                    let res = FileManager().fileSize(atPath: FileManager.tempVideoUploadPath)
+                    if res.error {
+                        err = true
+                        mes = "ファイルの読み込みに失敗しました"
+                    } else {
+                        if res.size > (1024 * 1024 * 5) {
+                            err = true
+                            mes = "ファイルサイズが大きすぎます \(res.size / 1024 / 1024)MB"
+                        }
+                    }
+                    print("size \(res.size / 1024)KB")
+                }
+                let exporter: VideoExporter = VideoExporter(to: FileManager.videoUploadURL)
+                exporter.export(url: FileManager.tempVideoUploadURL) { (error: Bool, message: String) in
+                    if error {
+                        let alert: UIAlertController = UIAlertController.simple(title: "読込みエラー", message: message)
+                        self.present(alert, animated: true, completion: nil)
+                        return
+                    }
+                    let res = FileManager().fileSize(atPath: FileManager.videoUploadPath)
+                    print("size \(res.size / 1024)KB")
+                    picker.dismiss(animated: true, completion: {
+                        if err {
+                            let alert: UIAlertController = UIAlertController.simple(title: "読込みエラー", message: mes)
+                            self.present(alert, animated: true, completion: nil)
+                            return
+                        }
+                        self.gotoPreview(videoUrl: FileManager.videoUploadURL)
+                    })
+                }
+            })*/
+            
             return
         }
         picker.dismiss(animated: true, completion: nil)

@@ -73,10 +73,12 @@ class VideoExporterViewController: UIViewController {
 //        exporter.quality = .AVAssetExportPresetHighestQuality
 //        exporter.quality = .AVAssetExportPresetMediumQuality
 //        exporter.quality = .AVAssetExportPreset640x480
-//        exporter.quality = .AVAssetExportPreset1280x720
+        exporter.quality = .AVAssetExportPreset1280x720
         exporter.volume = (volumeSwitch.isOn) ? 1.0 : 0.0
         exporter.views = [sampleView]
         exporter.export(url: url) { (error: Bool, message: String) in
+            let res = FileManager().fileSize(atPath: FileManager.videoExportPath)
+            print("size \(res.size / 1024)KB")
             if error {
                 let alert: UIAlertController = UIAlertController(title: "error", message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) in

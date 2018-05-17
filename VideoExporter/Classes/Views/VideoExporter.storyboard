@@ -26,16 +26,24 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAMPLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDo-Zi-kJK">
-                                        <rect key="frame" x="100.5" y="222" width="119.5" height="36"/>
+                                        <rect key="frame" x="100.5" y="102" width="119.5" height="36"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                         <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAMPLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJ0-0Q-Tb5">
+                                        <rect key="frame" x="100" y="132" width="119.5" height="36"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="0.8771524235" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="bJ0-0Q-Tb5" firstAttribute="centerX" secondItem="s6x-dK-aNA" secondAttribute="centerX" id="BKJ-xz-K7p"/>
+                                    <constraint firstItem="bJ0-0Q-Tb5" firstAttribute="centerY" secondItem="s6x-dK-aNA" secondAttribute="centerY" constant="-90" id="ab1-Ud-QYH"/>
                                     <constraint firstItem="hDo-Zi-kJK" firstAttribute="centerX" secondItem="s6x-dK-aNA" secondAttribute="centerX" id="jGM-CW-6Vb"/>
-                                    <constraint firstItem="hDo-Zi-kJK" firstAttribute="centerY" secondItem="s6x-dK-aNA" secondAttribute="centerY" id="x6D-VQ-Iax"/>
+                                    <constraint firstItem="hDo-Zi-kJK" firstAttribute="centerY" secondItem="s6x-dK-aNA" secondAttribute="centerY" constant="-120" id="x6D-VQ-Iax"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ne-PG-XjC">
