@@ -25,6 +25,7 @@
 		041199CA1FD63B2A00AD82AB /* DefaultButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041199C91FD63B2A00AD82AB /* DefaultButtonView.swift */; };
 		041199CC1FD9359000AD82AB /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041199CB1FD9359000AD82AB /* Device.swift */; };
 		041199CE1FD94A6700AD82AB /* VideoExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041199CD1FD94A6700AD82AB /* VideoExporter.swift */; };
+		046F28B620ADBD92008D7FE5 /* UInt64Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046F28B520ADBD92008D7FE5 /* UInt64Extension.swift */; };
 		04FAE5B8202317D0002057C6 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAE5B7202317D0002057C6 /* UIImageExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		041199C91FD63B2A00AD82AB /* DefaultButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButtonView.swift; sourceTree = "<group>"; };
 		041199CB1FD9359000AD82AB /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		041199CD1FD94A6700AD82AB /* VideoExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoExporter.swift; sourceTree = "<group>"; };
+		046F28B520ADBD92008D7FE5 /* UInt64Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt64Extension.swift; sourceTree = "<group>"; };
 		04FAE5B7202317D0002057C6 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,6 +207,7 @@
 				041199C71FD6314F00AD82AB /* UIAlertControllerExtension.swift */,
 				04FAE5B7202317D0002057C6 /* UIImageExtension.swift */,
 				041199B91FD5673800AD82AB /* UIViewExtension.swift */,
+				046F28B520ADBD92008D7FE5 /* UInt64Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				041199861FD564B200AD82AB /* MainViewController.swift in Sources */,
 				041199C01FD6266300AD82AB /* DefaultButton.swift in Sources */,
 				041199C81FD6314F00AD82AB /* UIAlertControllerExtension.swift in Sources */,
+				046F28B620ADBD92008D7FE5 /* UInt64Extension.swift in Sources */,
 				041199C21FD629D700AD82AB /* PreviewView.swift in Sources */,
 				041199CA1FD63B2A00AD82AB /* DefaultButtonView.swift in Sources */,
 				04FAE5B8202317D0002057C6 /* UIImageExtension.swift in Sources */,

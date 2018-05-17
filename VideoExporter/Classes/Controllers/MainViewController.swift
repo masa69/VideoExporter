@@ -76,16 +76,16 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 var mes: String = message
                 if !err {
                     let res = FileManager().fileSize(atPath: FileManager.videoUploadPath)
+                    print(res.size.mb)
                     if res.error {
                         err = true
                         mes = "ファイルの読み込みに失敗しました"
                     } else {
                         if res.size > (1024 * 1024 * 5) {
                             err = true
-                            mes = "ファイルサイズが大きすぎます \(res.size / 1024 / 1024)MB"
+                            mes = "ファイルサイズが大きすぎます \(res.size.mb)"
                         }
                     }
-                    print("size \(res.size / 1024)KB")
                 }
                 picker.dismiss(animated: true, completion: {
                     if err {
@@ -102,16 +102,16 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 var mes: String = message
                 if !err {
                     let res = FileManager().fileSize(atPath: FileManager.tempVideoUploadPath)
+                    print(res.size.mb)
                     if res.error {
                         err = true
                         mes = "ファイルの読み込みに失敗しました"
                     } else {
                         if res.size > (1024 * 1024 * 5) {
                             err = true
-                            mes = "ファイルサイズが大きすぎます \(res.size / 1024 / 1024)MB"
+                            mes = "ファイルサイズが大きすぎます \(res.size.mb)"
                         }
                     }
-                    print("size \(res.size / 1024)KB")
                 }
                 let exporter: VideoExporter = VideoExporter(to: FileManager.videoUploadURL)
                 exporter.export(url: FileManager.tempVideoUploadURL) { (error: Bool, message: String) in

@@ -79,7 +79,7 @@ class VideoExporterViewController: UIViewController {
         exporter.views = [sampleView]
         exporter.export(url: url) { (error: Bool, message: String) in
             let res = FileManager().fileSize(atPath: FileManager.videoExportPath)
-            print("size \(res.size / 1024)KB")
+            print(res.size.mb)
             if error {
                 let alert: UIAlertController = UIAlertController(title: "error", message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) in
